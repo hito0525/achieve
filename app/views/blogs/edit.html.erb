@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+    <h2>ブログを編集する</h2>
+    <%= render 'form' %>
+  </div>
+</div>
+
+
+<!-- <p id="notice"><%= notice %></p>
+
+<%= form_for(@blog) do |f| %>
+<% if @blog.errors.any? %>
+<div id = "error_explanation">
+  <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+  <ul>
+    <% @blog.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+
+
+<%= f.label :title %>
+<%= f.text_field :title %>
+<br>
+<%= f.label :content %>
+<%= f.text_field :content %>
+<br>
+<%= f.submit %>
+<% end %>
+
+<%= link_to "ブログ一覧画面に戻る", blogs_path %>
+
+ -->

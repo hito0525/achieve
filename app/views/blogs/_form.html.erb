@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<%= form_for(@blog, url: choose_new_or_edit ) do |f| %>
+  <% if @blog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+
+      <ul>
+      <% @blog.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  <%= f.label :title %> <br>
+  <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+  <%= f.label :content %> <br>
+  <%= f.text_area :content, class: 'form-control' %>
+  </div>
+
+  <br>
+
+  <div class="actions">
+  <%= f.submit  '投稿', class: 'btn btn-primary btn-block' %>
+<% end %>
+</div>
+<%= link_to "ブログ一覧画面にもどる", blogs_path %>
+
