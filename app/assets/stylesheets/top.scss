@@ -2,13 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body {
-  width: 100%;
-  background-size: cover;
-  background-image: url("../images-master/header.jpg");
-  background-attachment: fixed;
-  text-align: center;
-}
 
 header {
   width: 100%;
@@ -46,22 +39,15 @@ header li {
   padding: 80px
 }
 
-.function-images {
-  width: 100%;
-  display: table;
-  margin-top: 60px;
-  table-layout: fixed;
-}
-
-.function-image {
-  display: table-cell;
-  width: 100%
-}
-
 .main-header {
   padding-top: 16%;
   padding-bottom: 15%;
+  width: 100%;
+  background-size: cover;
+  background-image: image-url("header.jpg");
+  background-attachment: fixed;
 }
+
 
 .main-header img {
   display: block;
