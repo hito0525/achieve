@@ -11,7 +11,7 @@ end
     @contact = Contact.new(contacts_params)
     if @contact.save
     #Contact.create(contacts_params)
-    redirect_to new_contact_path,notice: "お問い合わせを受け付けました！"
+    redirect_to root_path,notice: "お問い合わせが完了しました！"
   else
     render action: "new"
   end
