@@ -52,6 +52,10 @@ gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 gem 'therubyrhino'
 
+#jQuery使用のためのgem
+gem 'jquery-turbolinks'
+
+
 
 
 
