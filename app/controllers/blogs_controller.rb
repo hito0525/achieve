@@ -11,7 +11,7 @@ before_action :set_blog, only: [:edit, :update, :destroy]
     @blog = Blog.new(blogs_params)
     @blog.user_id = current_user.id
   else
-    @blog = Blog.new
+
     #新規作成ボタンからうつれるように！！
       @blog = Blog.new
       @blog.user_id = current_user.id
