@@ -59,6 +59,9 @@ gem 'jquery-turbolinks'
 gem 'devise'
 gem 'execjs'
 
+#テストデータを大量に生成。ランダムに名前やメールアドレスを作成してくれる
+gem 'faker'
+
 
 
 

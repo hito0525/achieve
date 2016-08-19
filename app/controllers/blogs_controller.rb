@@ -9,13 +9,19 @@ before_action :set_blog, only: [:edit, :update, :destroy]
   def new
     if params[:back]
     @blog = Blog.new(blogs_params)
+    @blog.user_id = current_user.id
   else
     @blog = Blog.new
+    #新規作成ボタンからうつれるように！！
+      @blog = Blog.new
+      @blog.user_id = current_user.id
+
     end
   end
 
   def create
     @blog = Blog.new(blogs_params)
+    @blog.user_id = current_user.id
     if @blog.save
        # 一覧画面へ遷移して"ブログを作成しました！"とメッセージを表示してこのアクションは終了！！。
     #Blog.create(blogs_params)
@@ -28,6 +34,7 @@ before_action :set_blog, only: [:edit, :update, :destroy]
   end
 
   def edit
+
     # edit, update, destroyで共通コード
     #set_blogで共通化
     #@blog = Blog.find(params[:id])
@@ -54,6 +61,7 @@ end
 
   def confirm
     @blog = Blog.new(blogs_params)
+    @blog.user_id = current_user.id
     render :new if @blog.invalid?
   end
 
