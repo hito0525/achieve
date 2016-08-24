@@ -4,5 +4,6 @@
 <p>content: <%= @blog.content %></p>
 
 <p>
-  <%= link_to '投稿されたブログはこちら', blogs_path(@blog) %>
+  <%= link_to '投稿されたブログ確認はこちら', blogs_url(@blog) %>
+  <!-- pathからurlにしないと、中が確認できない -->
 </p>
