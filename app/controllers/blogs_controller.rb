@@ -26,6 +26,7 @@ before_action :set_blog, only: [:edit, :update, :destroy]
        # 一覧画面へ遷移して"ブログを作成しました！"とメッセージを表示してこのアクションは終了！！。
     #Blog.create(blogs_params)
     redirect_to blogs_path, notice: "ブログを作成しました！"
+    NoticeMailer.sendmail_blog(@blog).deliver
   else
     render action: 'new'
     #入力フォームへ再び止める.
