@@ -4,7 +4,11 @@ before_action :set_blog, only: [:edit, :update, :destroy]
 
   def index
     @blogs = Blog.all
+    #binding.pry
+    @blogs = Blog.order(:created_at).reverse_order
+
   end
+
 
   def new
     if params[:back]
@@ -65,7 +69,7 @@ end
     @blog.user_id = current_user.id
     render :new if @blog.invalid?
   end
-
+end
 
 
 
@@ -77,5 +81,5 @@ def set_blog
   @blog = Blog.find(params[:id])
 
 end
-end
+
 
