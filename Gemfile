@@ -70,6 +70,12 @@ gem 'rails_admin'
 #adminカラムがtrueの場合のみ管理画面へアクセスできるように
 gem 'cancan'
 
+#デバッグ用のgem
+group :development, :test do
+gem 'pry-rails'
+gem 'better_errors'
+end
+
 
 
 

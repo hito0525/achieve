@@ -8,6 +8,10 @@ before_action :configure_permitted_parameters, if: :devise_controller?
 
   PERMISSIBLE_ATTRIBUTES = %i(name)
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to main_app.root_url, :alert => exception.message
+  end
+
   private
 
     def configure_permitted_parameters
