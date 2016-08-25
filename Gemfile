@@ -51,7 +51,7 @@ gem 'rails_12factor', group: :production
 
 #ここからはbootstrap用のgem
 gem 'twitter-bootstrap-rails'
-gem 'therubyracer'
+gem 'therubyracer', platforms: :ruby
 gem 'therubyrhino'
 
 #jQuery使用のためのgem
@@ -63,6 +63,12 @@ gem 'execjs'
 
 #テストデータを大量に生成。ランダムに名前やメールアドレスを作成してくれる
 gem 'faker'
+
+#管理画面を作成するgem
+gem 'rails_admin'
+
+#adminカラムがtrueの場合のみ管理画面へアクセスできるように
+gem 'cancan'
 
 
 
