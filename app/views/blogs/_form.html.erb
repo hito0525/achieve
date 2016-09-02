@@ -1,17 +1,8 @@
 <p id="notice"><%= notice %></p>
 <%= form_for(@blog, url: choose_new_or_edit ) do |f| %>
 <p>投稿者名：<%= @blog.user.name%> 投稿者ID：<%= @blog.user.id%> </p>
-  <% if @blog.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
 
-      <ul>
-      <% @blog.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.error_messages! %>
 
   <div class="field">
   <%= f.label :title %> <br>
