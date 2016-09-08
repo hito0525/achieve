@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
+
+mount_uploader :avatar, AvatarUploader
+
+
 has_many :blogs
 
 
@@ -47,6 +51,5 @@ def self.find_for_twitter_oauth(auth, signed_in_resource = nil)
 def self.create_unique_string
     SecureRandom.uuid
   end
-
 
 end

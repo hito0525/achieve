@@ -82,7 +82,10 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
-
+#画像をアップロードするため
+gem 'carrierwave'
+#アップロードした画像ファイルのサイズを変更するため
+gem 'rmagick'
 
 
 
