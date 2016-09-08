@@ -45,6 +45,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'dotenv-rails'
 end
 
 gem 'rails_12factor', group: :production
@@ -77,7 +78,9 @@ gem 'better_errors'
 end
 
 #「認可情報の委譲」をするためのもの
-#gem 'omniauth'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 
 

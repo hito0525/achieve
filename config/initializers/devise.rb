@@ -272,4 +272,16 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   config.secret_key = '68be9d619609490756d0487b9ae857e75b163c6fc627a5f6810243c44e4c4f232efab94c78b0bca8238244a0e4dc43cd021cdc2e61581b69e68420bf6b94aeca'
+
+   if Rails.env.production?
+    config.omniauth :facebook, ENV["1783862421891746"], ENV["58521fe3a0887fe59a89b5f6da7cfdf9"], scope: 'email', display: 'popup', info_fields: 'name, email'
+    config.omniauth :twitter, ENV["bJWdnC9qyVxTGjU3UAtprtx6T"], ENV["kihU0VBIgcJs7FRblkkZ45mMIDbe8FF7twUXZ1zxUVYtd49iFe"], scope: 'email', display: 'popup', info_fields: 'name, email'
+  else
+    config.omniauth :facebook, ENV["1590645291237433"], ENV["924c3b987690b17eb138076581f1f0df"], scope: 'email', display: 'popup', info_fields: 'name, email'
+    config.omniauth :twitter, ENV["JvBeAoPwGsnTGn3bNy8yH8FAU"], ENV["kihU0VBIgcJs7FRblkkZ45mMIDbe8FF7twUXZ1zxUVYtd49iFe"], scope: 'email', display: 'popup', info_fields: 'name, email'
+  end
+
+
+
+
 end
