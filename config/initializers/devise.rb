@@ -274,12 +274,13 @@ Devise.setup do |config|
   config.secret_key = '68be9d619609490756d0487b9ae857e75b163c6fc627a5f6810243c44e4c4f232efab94c78b0bca8238244a0e4dc43cd021cdc2e61581b69e68420bf6b94aeca'
 
    if Rails.env.production?
-    config.omniauth :facebook, ENV["1783862421891746"], ENV["58521fe3a0887fe59a89b5f6da7cfdf9"], scope: 'email', display: 'popup', info_fields: 'name, email'
-    config.omniauth :twitter, ENV["bJWdnC9qyVxTGjU3UAtprtx6T"], ENV["kihU0VBIgcJs7FRblkkZ45mMIDbe8FF7twUXZ1zxUVYtd49iFe"], scope: 'email', display: 'popup', info_fields: 'name, email'
+    config.omniauth :facebook, ENV["FACEBOOK_ID_PRODUCTION"], ENV["FACEBOOK_SECRET_PRODUCTION"], scope: 'email', display: 'popup', info_fields: 'name, email'
+    config.omniauth :twitter, ENV["TWITTER_ID_PRODUCTION"], ENV["TWITTER_SECRET_PRODUCTION"], scope: 'email', display: 'popup', info_fields: 'name, email'
   else
-    config.omniauth :facebook, ENV["1590645291237433"], ENV["924c3b987690b17eb138076581f1f0df"], scope: 'email', display: 'popup', info_fields: 'name, email'
-    config.omniauth :twitter, ENV["JvBeAoPwGsnTGn3bNy8yH8FAU"], ENV["kihU0VBIgcJs7FRblkkZ45mMIDbe8FF7twUXZ1zxUVYtd49iFe"], scope: 'email', display: 'popup', info_fields: 'name, email'
+    config.omniauth :facebook, ENV["FACEBOOK_ID_DEVELOPMENT"], ENV["FACEBOOK_SECRET_DEVELOPMENT"], scope: 'email', display: 'popup', info_fields: 'name, email'
+    config.omniauth :twitter, ENV["TWITTER_ID_DEVELOPMENT"], ENV["TWITTER_SECRET_DEVELOPMENT"], scope: 'email', display: 'popup', info_fields: 'name, email'
   end
+
 
 
 

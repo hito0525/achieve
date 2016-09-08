@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-  def facebodok
-      @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
+  def facebook
+    @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
 
     if @user.persisted?
       set_flash_message(:notice, :success, kind: "Facebook") if is_navigational_format?
