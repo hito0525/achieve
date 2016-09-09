@@ -7,7 +7,11 @@
 
  <%= link_to "ブログを作成する", new_blog_path, class: 'btn btn-default' %>
     <% @blogs.each do |blog| %>
-    <div class="row">
+
+    <div class="panel panel-primary">
+      <div class="panel-body">
+
+
       <h4><strong><%= blog.title %></strong></h4>
 
       <p><%= simple_format (blog.content) %></p>
@@ -15,6 +19,14 @@
       <%= link_to "削除", blog_path(blog.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
       <br>
       <br>
+
+      <p><%= profile_img(blog.user) %></p>
+
+    <%= truncate(blog.content, omission: '・・・', length: 10) %><br />
+<em><%= blog.created_at %></em>
+</div>
+
+
       <p>投稿者ID:<%= blog.user.id if blog.user %></p>
       <p>投稿者:<%= blog.user.name if blog.user %></p>
     </div>

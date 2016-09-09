@@ -46,6 +46,15 @@ def self.find_for_twitter_oauth(auth, signed_in_resource = nil)
     user
   end
 
+  def update_with_password(params, *options)
+    if provider.blank?
+      super
+    else
+      params.delete :current_password
+      update_without_password(params, *options)
+    end
+  end
+
 
 
 def self.create_unique_string
