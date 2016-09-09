@@ -5,7 +5,7 @@
 
 <h1>ブログ一覧</h1>
 
- <%= link_to "ブログを作成する", new_blog_path, class: 'btn btn-default' %>
+ <%= link_to "ブログを作成する", new_blog_path, class: 'btn btn-primary' %>
     <% @blogs.each do |blog| %>
 
     <div class="panel panel-primary">
@@ -20,17 +20,21 @@
       <br>
       <br>
 
+      <div class="panel-body">
+
       <p><%= profile_img(blog.user) %></p>
 
-    <%= truncate(blog.content, omission: '・・・', length: 10) %><br />
-<em><%= blog.created_at %></em>
+<strong><%= blog.created_at %></strong>
+</div>
 </div>
 
 
       <p>投稿者ID:<%= blog.user.id if blog.user %></p>
       <p>投稿者:<%= blog.user.name if blog.user %></p>
     </div>
+
     <% end %>
+
     <div id="page-blogs-btn" class="page-blogs-btn">
     <p><a class="move-page-blogs" id="move-page-blogs">▲</a></p>
 </div>
