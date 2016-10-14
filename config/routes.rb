@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"}
   #get 'top/index'
 
- resources :blogs,only: [:index, :new, :create, :edit,:update, :destroy ]do
+ resources :blogs do
+  resources :comments
+ #,only: [:index, :new, :create, :edit,:update, :destroy ]do
  collection do
   post :confirm
 end
