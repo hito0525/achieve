@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
  resources :blogs do
   resources :comments
- #,only: [:index, :new, :create, :edit,:update, :destroy ]do
+ #only: [:index, :new, :create, :edit,:update, :destroy ]do
+ # resources :commentsを使用するために上記のonlyの使用はいらない
  collection do
   post :confirm
 end
