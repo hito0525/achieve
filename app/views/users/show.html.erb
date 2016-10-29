@@ -3,7 +3,7 @@
   <% @followed_users.each do |user| %>
           <ul class="usershow">
             <li><%= profile_img(user) %></li>
-            <li><%= user.email %></li>
+            <!-- <li><%= user.email %></li> -->
             <li><%= user.name %></li>
           </ul>
   <% end %>
@@ -12,7 +12,7 @@
   <% @followers.each do |user| %>
     <ul class="usershow">
       <li><%= profile_img(user) %></li>
-      <li><%= user.email %></li>
+      <!-- <li><%= user.email %></li> -->
       <li><%= user.name %></li>
     </ul>
   <% end %>
