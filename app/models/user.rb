@@ -65,4 +65,19 @@ def self.create_unique_string
     SecureRandom.uuid
   end
 
+#指定のユーザをフォローする
+def follow!(other_user)
+  relationships.create!(followed_id: other_user.id)
+end
+
+#フォローしているかどうかを確認する
+def following?(other_user)
+  relationships.find_by(followed_id: other_user.id)
+end
+
+#指定のユーザのフォローを解除する
+def unfollow!(other_user)
+  relationships.find_by(followed_id: other_user.id).destroy
+end
+
 end
