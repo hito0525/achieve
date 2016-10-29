@@ -1,0 +1,18 @@
+<h1>ユーザー詳細ページ</h1>
+<h3>フォローしているユーザー</h3>
+  <% @followed_users.each do |user| %>
+          <ul class="usershow">
+            <li><%= profile_img(user) %></li>
+            <li><%= user.email %></li>
+            <li><%= user.name %></li>
+          </ul>
+  <% end %>
+
+<h3>フォローされているユーザー</h3>
+  <% @followers.each do |user| %>
+    <ul class="usershow">
+      <li><%= profile_img(user) %></li>
+      <li><%= user.email %></li>
+      <li><%= user.name %></li>
+    </ul>
+  <% end %>
