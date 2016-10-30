@@ -29,7 +29,9 @@ end
 root 'top#index'
 
 resources :users, only: [:index, :show]
-resources :relationships, only: [:create, :destroy]
+resources :relationships, only: [:create, :destroy, :edit, :update] do
+resources :tasks
+end
 
 
 
