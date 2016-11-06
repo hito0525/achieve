@@ -34,7 +34,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to user_tasks_url, notice: 'タスクを編集しました。' }
+        format.html { redirect_to user_tasks_url, notice: 'タスクを登録しました。' }
         # format.html { redirect_to @task, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  resources :tasks
+  #resources :tasks
   # get 'relationships/create'
 
   # get 'relationships/destroy'
@@ -28,12 +28,16 @@ end
 
 
 root 'top#index'
-
-resources :users, only: [:index, :show]
-resources :relationships, only: [:create, :destroy, :edit, :update] do
+#タスクはユーザに紐付くため、ルーティングはユーザのルーティング下にネスト（階層化）させる必要があるため
+resources :users, only: [:index, :show, :edit, :update]do
 resources :tasks
 end
 
+
+
+resources :relationships, only: [:create, :destroy, :edit, :update] do
+
+end
 
 
 
