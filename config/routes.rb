@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   #resources :tasks
   # get 'relationships/create'
 
@@ -30,7 +29,15 @@ end
 root 'top#index'
 #タスクはユーザに紐付くため、ルーティングはユーザのルーティング下にネスト（階層化）させる必要があるため
 resources :users, only: [:index, :show, :edit, :update]do
-resources :tasks
+  resources :tasks
+  resources :submit_requests,  shallow: true do
+    get 'approve'
+    get 'unprove'
+    get 'reject'
+    collection do
+      get 'inbox'
+    end
+  end
 end
 
 
