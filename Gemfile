@@ -77,7 +77,6 @@ gem 'pry-rails'
 gem 'better_errors'
 end
 
-#「認可情報の委譲」をするためのもの
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
