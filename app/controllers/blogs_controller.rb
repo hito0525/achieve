@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
 before_action :authenticate_user!
-before_action :set_blog, only: [:show, :edit, :update, :destroy]
+before_action :current_user, only: [:edit,:update]
+before_action :set_blog, only: [:show, :edit, :update, :destroy, :liking_users]
 
   def index
     @blogs = Blog.all
@@ -9,7 +10,6 @@ before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   end
 
-   # showアククションを定義します。入力フォームと一覧を表示するためインスタンスを2つ生成します。
   def show
     @comment = @blog.comments.build
     @comments = @blog.comments
@@ -46,27 +46,17 @@ before_action :set_blog, only: [:show, :edit, :update, :destroy]
   end
 
   def edit
-
-    # edit, update, destroyで共通コード
-    #set_blogで共通化
-    #@blog = Blog.find(params[:id])
   end
 
   def update
-    # edit, update, destroyで共通コード
-    #set_blogで共通化
-    #@blog = Blog.find(params[:id])
     if @blog.update(blogs_params)
     redirect_to blogs_path, notice: "ブログを更新しました！"
   else
-    render action: 'edit'
+    render action:edit
   end
 end
 
   def destroy
-    # edit, update, destroyで共通コード
-    #set_blogで共通化
-    #@blog = Blog.find(params[:id])
     @blog.destroy
     redirect_to blogs_path,notice: "ブログを削除しました！"
   end
@@ -76,16 +66,27 @@ end
     @blog.user_id = current_user.id
     render :new if @blog.invalid?
   end
-end
 
+  def liking_user
+    @users = @blog.liking_users
+  end
 
 
 private
-def blogs_params
-  params.require(:blog).permit(:title,:content)
-end
-def set_blog
-  @blog = Blog.find(params[:id])
+
+  def blogs_params
+    params.require(:blog).permit(:title,:content)
+  end
+  def set_blog
+    @blog = Blog.find(params[:id])
+  end
+
+  def correct
+    blog = Blog.find(params[:id])
+    if !current_user?(blog.user)
+      redirect_to root_path, alert: '許可されてないページです'
+    end
+  end
 
 end
 
