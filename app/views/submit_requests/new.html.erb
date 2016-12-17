@@ -1,14 +1,19 @@
-<div class="wrapper col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-  <div>
+<div class="container">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+
+    <div>
     <h2>依頼する内容</h2>
     <div>
       <% if @users.blank? %>
         依頼するユーザーがいません。
+      <% elsif @tasks.blank? %>
+        依頼するタスクがありません。
       <% elsif current_user.tasks.present? %>
         <%= render 'form' %>
       <% else %>
         依頼できるものがありません。
       <% end %>
+      </div>
     </div>
   </div>
 </div>

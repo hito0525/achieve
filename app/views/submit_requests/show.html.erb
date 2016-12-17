@@ -1,2 +1,14 @@
-<h1>SubmitRequests#show</h1>
-<p>Find me in app/views/submit_requests/show.html.erb</p>
+<h2>Requesting</h2>
+
+<div class="container">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+    <p class="bg-info">
+    <% unless @submit_request.message.blank? %>
+      <%= @submit_request.message %>
+    <% else %>
+      メッサージはありません
+    <% end %>
+    </p>
+  </div>
+</div>
+<%= link_to '依頼一覧に戻る', user_submit_requests_path(current_user.id, @submit_request) %>

@@ -1,36 +1,36 @@
 Rails.application.routes.draw do
 
-  #resources :tasks
-  # get 'relationships/create'
-
-  # get 'relationships/destroy'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"}
-  #get 'top/index'
 
-
- resources :blogs do
+  resources :blogs, only: [:index,:show, :new,:create, :edit, :update, :destroy] do
+    member do
+      get :liking_users
+    end
+    #resources :likes
   resources :comments
- #only: [:index, :new, :create, :edit,:update, :destroy ]do
- # resources :commentsを使用するために上記のonlyの使用はいらない
- collection do
+  collection do
   post :confirm
+ end
 end
-end
- resources :contacts, only: [:new, :create, :confirm ]do
- collection do
+  resources :contacts, only: [:new, :create, :confirm ] do
+  collection do
   post :confirm
-end
+  end
 end
 
+post '/like/:blog_id' => 'likes#like', as: 'like'
+delete '/unlike/:blog_id' => 'likes#unlike', as: 'unlike'
 
 root 'top#index'
 #タスクはユーザに紐付くため、ルーティングはユーザのルーティング下にネスト（階層化）させる必要があるため
-resources :users, only: [:index, :show, :edit, :update]do
+  resources :users, only: [:index, :show, :edit, :update] do
+    member do
+      get :like_blogs
+  end
   resources :tasks
-  resources :submit_requests,  shallow: true do
+  resources :submit_requests , shallow: true do
     get 'approve'
     get 'unprove'
     get 'reject'
@@ -40,73 +40,7 @@ resources :users, only: [:index, :show, :edit, :update]do
   end
 end
 
+  resources :relationships, only: [:create, :destroy, :edit, :update] do
+  end
 
-
-resources :relationships, only: [:create, :destroy, :edit, :update] do
-
-end
-
-
-
-
-
-
-  # get 'blogs/index'
-
-  # get 'blogs' => 'blogs#index'
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

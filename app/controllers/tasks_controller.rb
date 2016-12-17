@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.where(user_id: params[:user_id]).where.not(done: true)
-                 .order(updated_at: :desc)
+                 .order(deadline: :desc)
     @user = User.find(params[:user_id])
     # @tasks = Task.all
   end
