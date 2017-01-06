@@ -5,19 +5,12 @@ class SubmitRequestsController < ApplicationController
 
   def index
     @submit_request = SubmitRequest.where(user_id: current_user.id).order(updated_at: :desc)
-    #  @tasks = Task.where(user_id: params[:user_id]).where.not(done: true, status: 1)
-    #              .order(updated_at: :desc)
-    # @user = User.find(params[:user_id])
   end
 
   def new
-    #相互フォローユーザー
     @users = current_user.friend
-    #自分が作成した未完了タスク
     @tasks = current_user.tasks.where(done: false)
-    #フォーム送信用に取得
     @user = current_user
-    #リクエスト新規作成用
     @submit_request = current_user.submit_requests.build(status: 1)
   end
 
@@ -39,10 +32,7 @@ class SubmitRequestsController < ApplicationController
   end
 
   def edit
-    #相互フォローユーザー
     @users = current_user.friend
-    #自分が作成した未完了タスク
-    #@tasks = current_user_tasks_where(done: false)
     @tasks = current_user.tasks.where(done: false)
     @submit_request.update(status: 1)
     @submit_request.task.update(status: 1)
@@ -71,18 +61,13 @@ class SubmitRequestsController < ApplicationController
 
   def approve
     @submit_request.update(status: 2)
-    #@submit_request.task.update(status: 2)
     @submit_request.update(user_id: current_user.id)
-    #@submit_requests = SubmitRequest.where(charge_id: current_user.id).order(updated_at: :desc)
     @submit_request.task.update(user_id: current_user.id)
     redirect_to user_tasks_path(current_user.id), notice: "依頼を承認しました！"
   end
 
   def unapprove
     @submit_request.update(status: 9)
-    #@submit_request.task.update(status: 9, charge_id: @submit_request.user_id)
-    #@submit_request.task.update(charge_id: @submit_request.user_id)
-    #@submit_requests = SubmitRequest.where(charge_id: current_user.id).order(updated_at: :desc)
      @submit_requests = SubmitRequest.where(charge_id: current_user.id).where.not(user_id: current_user.id).order(updated_at: :desc)
     respond_to do |format|
       format.js { render :reaction_inbox }
@@ -91,7 +76,6 @@ class SubmitRequestsController < ApplicationController
 
   def reject
     @submit_request.update(status: 8)
-    #@submit_request.task.update(status: 8, charge_id: current_user.id)
     @submit_requests = SubmitRequest.where(charge_id: current_user.id).order(updated_at: :desc)
     respond_to do |format|
       format.js { render :reaction_inbox }
@@ -99,7 +83,6 @@ class SubmitRequestsController < ApplicationController
   end
 
   def inbox
-    #@submit_requests = SubmitRequest.where(charge_id: current_user.id).order(updated_at: :desc)
      @submit_requests = SubmitRequest.where(user_id: current_user.id).where.not(user_id: current_user.id).order(updated_at: :desc)
   end
 
@@ -109,7 +92,7 @@ class SubmitRequestsController < ApplicationController
   end
 
   def submit_request_params
-    params.require(:submit_request).permit(:task_id, :usrer_id, :charge_id, :status, :message)
+    params.require(:submit_request).permit(:task_id, :user_id, :charge_id, :status, :message)
   end
 
   def submit_params
