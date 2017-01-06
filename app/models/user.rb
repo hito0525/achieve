@@ -67,29 +67,27 @@ def self.find_for_twitter_oauth(auth, signed_in_resource = nil)
 
 
 
-def self.create_unique_string
-    SecureRandom.uuid
+  def self.create_unique_string
+      SecureRandom.uuid
   end
 
 #指定のユーザをフォローする
-def follow!(other_user)
-  relationships.create!(followed_id: other_user.id)
-end
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
 
 #フォローしているかどうかを確認する
-def following?(other_user)
-  relationships.find_by(followed_id: other_user.id)
-end
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end
 
 #指定のユーザのフォローを解除する
-def unfollow!(other_user)
-  relationships.find_by(followed_id: other_user.id).destroy
-end
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
+  end
 
 #「つながっているユーザを取得する」
-def friend
-  followers & followed_users
-end
-
-
+  def friend
+    followers & followed_users
+  end
 end

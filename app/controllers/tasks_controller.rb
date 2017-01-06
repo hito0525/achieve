@@ -6,8 +6,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(user_id: params[:user_id]).where.not(done: true)
-                 .order(deadline: :desc)
+    @tasks = Task.where(user_id: params[:user_id]).where.not(status: 1).order(updated_at: :desc)
     @user = User.find(params[:user_id])
     # @tasks = Task.all
   end
@@ -15,6 +14,9 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+     @user = User.find(params[:user_id])
+     @charger = User.find(@task.charge_id)
+     redirect_to(user_tasks_path(current_user)) unless current_user == @charger || current_user == @user
   end
 
   # GET /tasks/new
@@ -85,6 +87,4 @@ class TasksController < ApplicationController
       @user = User.find(params[:user_id])
       redirect_to(user_tasks_path(current_user)) unless current_user == @user
     end
-
-
 end

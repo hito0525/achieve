@@ -1,5 +1,4 @@
 module SubmitRequestsHelper
-  module SubmitRequestsHelper
   def status_display_name(status)
     case status
       when 1
@@ -14,7 +13,6 @@ module SubmitRequestsHelper
   end
 
   def done_display_name(done)
-    done ? '完了' : '未完了'
+        done ? '完了' : '未完了'
   end
-end
 end
