@@ -53,7 +53,9 @@ class SubmitRequestsController < ApplicationController
 
   def destroy
     @submit_request.destroy
-   respond_to do |format|
+    @submit_requests = SubmitRequest.where(user_id: current_user.id).order(updated_at: :desc)
+
+    respond_to do |format|
       format.html { redirect_to user_submit_requests_url(current_user.id), notice: '依頼を削除しました。' }
       format.json { head :no_content }
     end
@@ -61,29 +63,35 @@ class SubmitRequestsController < ApplicationController
 
   def approve
     @submit_request.update(status: 2)
-    @submit_request.update(user_id: current_user.id)
     @submit_request.task.update(user_id: current_user.id)
-    redirect_to user_tasks_path(current_user.id), notice: "依頼を承認しました！"
+    @submit_requests = SubmitRequest.where(charge_id: current_user.id).where.not(user_id: current_user.id).order(updated_at: :desc)
+    #redirect_to user_tasks_path(current_user.id), notice: "依頼を承認しました！"
+    respond_to do |format|
+      format.js { render :reaction_inbox }
+    end
   end
 
   def unapprove
-    @submit_request.update(status: 9)
-     @submit_requests = SubmitRequest.where(charge_id: current_user.id).where.not(user_id: current_user.id).order(updated_at: :desc)
+    @submit_request.update(status: 9, charge_id: @submit_request.user_id)
+    @submit_request.task.update(status: 9, charge_id: @submit_request.user_id)
+    @submit_requests = SubmitRequest.where(charge_id: current_user.id).where.not(user_id: current_user.id).order(updated_at: :desc)
+
     respond_to do |format|
       format.js { render :reaction_inbox }
     end
   end
 
   def reject
-    @submit_request.update(status: 8)
+    @submit_request.update(status: 8, charge_id: current_user.id)
+    @submit_request.task.update(status: 8, charge_id: current_user.id)
     @submit_requests = SubmitRequest.where(charge_id: current_user.id).order(updated_at: :desc)
     respond_to do |format|
       format.js { render :reaction_inbox }
     end
   end
-
+  #シンプルに未承認だけを残せば、他は自分のタスクで確認すればいいのでは？that's why status ought to be jutst1
   def inbox
-     @submit_requests = SubmitRequest.where(user_id: current_user.id).where.not(user_id: current_user.id).order(updated_at: :desc)
+     @submit_requests = SubmitRequest.where(charge_id: current_user.id, status: [1]).order(updated_at: :desc)
   end
 
   private

@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.where(user_id: params[:user_id]).where.not(done: true, status: 1).order(updated_at: :desc)
+    @tasks = Task.where(user_id: params[:user_id]).where.not(done: true).order(deadline: :desc)
     @user = User.find(params[:user_id])
   end
 
