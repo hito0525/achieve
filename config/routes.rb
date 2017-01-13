@@ -32,7 +32,7 @@ root 'top#index'
   resources :tasks
   resources :submit_requests , shallow: true do
     get 'approve'
-    get 'unprove'
+    get 'unapprove'
     get 'reject'
     collection do
       get 'inbox'
