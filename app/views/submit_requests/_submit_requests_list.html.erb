@@ -26,17 +26,19 @@
               <td><%= submit_request.created_at.strftime("%y/%m/%d") %></td>
               <td><%= status_display_name(submit_request.status) %></td>
               <td><%= done_display_name(submit_request.task.done) %></td>
-              <td data-featherlight="#<%= (submit_request.id) %>"><%= link_to 'メッセージ', submit_request_path(submit_request) %></td>
+
+              <td data-featherlight="#<%= (submit_request.id) %>"><%= link_to 'メッセージ', submit_request_path(submit_request), class: 'btn btn-default' %></td>
               <% if submit_request.charge_id == current_user.id %>
                   <td>
-                    <%= link_to '承認', submit_request_approve_path(submit_request) %>
-                    <%= link_to '却下', submit_request_unapprove_path(submit_request), remote: true %>
+                    <%= link_to '承認', submit_request_approve_path(submit_request), remote: true, class: 'btn btn-primary btn-sm btn-block'  %>
+                    <%= link_to '却下', submit_request_unapprove_path(submit_request), remote: true, class: 'btn btn-default btn-sm btn-warning ' %>
                   </td>
               <% end %>
+
               <% if submit_request.user_id == current_user.id %>
                   <td>
-                    <%= link_to '編集', edit_submit_request_path(submit_request) %>
-                    <%= link_to '削除', submit_request_path(submit_request.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %>
+                    <%= link_to '編集', edit_submit_request_path(submit_request), class: 'btn btn-default btn-sm btn-sm btn-success' %>
+                    <%= link_to '削除', submit_request_path(submit_request.id), method: :delete, data: { confirm: '本当に削除していいですか？' } , class: 'btn btn-default btn-sm btn btn-danger'%>
                     <%= link_to '依頼を取り消す', submit_request_reject_path(submit_request.id), data: submit_request.id, remote: true if submit_request.status == 1 %>
                   </td>
               <% end %>
