@@ -6,3 +6,5 @@
   <p><%= f.hidden_field :status %></p>
   <p><%= f.submit "依頼する", class: "btn btn-primary btn-block" %></p>
 <% end %>
+<%= link_to '戻る', user_submit_requests_path(current_user) %>
+
