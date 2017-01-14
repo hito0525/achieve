@@ -27,7 +27,7 @@
 
 <p>
   <strong>Done:</strong>
-  <%= @task.done %>
+  <%= if @task.done? then "Complete" else "incomplete" end  %>
 </p>
 
 <p>
