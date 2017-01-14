@@ -1,0 +1,17 @@
+<li>
+  <%= image_for(blog.user) %>
+  <span class="user-name">
+    <%= blog.user.name %>
+  </span>
+  <span class="content">
+    <%= link_to blog.title, blog_path(blog.id) %>
+  <div>
+      <small>
+        <%= blog.likes.count %>人がいいね！といっています
+      </small>
+    </div>
+  </span>
+  <span>
+    <%= blog.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+  </span>
+</li>
