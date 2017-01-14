@@ -12,7 +12,6 @@ class LikesController < ApplicationController
     like.destroy
     redirect_to blog
   end
-
 end
 
 
