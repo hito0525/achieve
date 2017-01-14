@@ -14,6 +14,12 @@
   <%= f.text_area :content, class: 'form-control' %>
   </div>
 
+  <div>
+  <small>
+    <%= @blog.likes.count %>人がいいね！といっています
+  </small>
+  </div>
+
   <br>
 
   <div class="actions">

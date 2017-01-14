@@ -1,39 +1,38 @@
 <div class= "container">
-<div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
 
-<p><%= notice %></p>
+    <p><%= notice %></p>
 
-<h1>ブログ一覧</h1>
+    <h1>ブログ一覧</h1>
 
- <%= link_to "ブログを投稿する", new_blog_path, class: 'btn btn-primary' %>
+    <%= link_to "ブログを投稿する", new_blog_path, class: 'btn btn-primary' %>
 
     <% @blogs.each do |blog| %>
-
     <div class="panel panel-primary">
       <div class="panel-body">
       <%= link_to blog_path(blog) do %>
       <h4><strong><%= blog.title %></strong></h4>
       <% end %>
       <p><%= simple_format (blog.content) %></p>
-      <div class="panel-body">
-
+        <div class="panel-body">
       <p><%= profile_img(blog.user) %></p>
-
-</div>
-</div>
-
-
+        </div>
+      </div>
       <p>投稿者ID:<%= blog.user.id if blog.user %></p>
       <p>投稿者:<%= blog.user.name if blog.user %></p>
-
-<%= link_to "編集", edit_blog_path(blog.id), class: 'btn btn-default btn-sm btn-success' %>
-<%= link_to "削除", blog_path(blog.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
+      <% if current_user.id == blog.user_id %>
+      <%= link_to "編集", edit_blog_path(blog.id), class: 'btn btn-default btn-sm btn-success' %>
+      <%= link_to "削除", blog_path(blog.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
       <br>
       <br>
+      <% end %>
     </div>
     <% end %>
-    <div id="page-blogs-btn" class="page-blogs-btn">
-    <p><a class="move-page-blogs" id="move-page-blogs">▲</a></p>
-</div>
+
   </div>
 </div>
+
+<div id="page-blogs-btn" class="page-blogs-btn">
+  <p><a class="move-page-blogs" id="move-page-blogs">▲</a></p>
+</div>
+

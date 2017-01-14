@@ -13,11 +13,19 @@
         <%= link_to 'いいね！', like_path(@blog.id), method: :post %>
       <% end %>
       </div>
+
+      <div>
+        <small>
+          <%= @blog.likes.count %>人がいいね！といっています
+        </small>
+      </div>
+
       <p class="right">
         <strong>作成時間:</strong>
         <%= @blog.created_at.strftime("%y/%m/%d %p %l:%M") %>
       </p>
     </div>
+
     <p>コメント一覧</p>
     <div id="comments_area">
       <%= render partial: 'comments/index', locals: { comments: @comments, blog: @blog } %>
