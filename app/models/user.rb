@@ -16,7 +16,7 @@ has_many :followers, through: :reverse_relationships, source: :follower
 has_many :tasks, dependent: :destroy
 has_many :submit_requests, dependent: :destroy
 has_many :likes
-#has_many :like_blogs, through: :likes, source: :blog
+has_many :like_blogs, through: :likes, source: :blog
 
 #validates :name, presence: true
 

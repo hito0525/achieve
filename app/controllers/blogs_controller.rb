@@ -7,13 +7,11 @@ before_action :set_blog, only: [:show, :edit, :update, :destroy, :liking_users]
     @blogs = Blog.all
     #binding.pry
     @blogs = Blog.order(:created_at).reverse_order
-
   end
 
   def show
     @comment = @blog.comments.build
     @comments = @blog.comments
-
   end
 
 
@@ -22,11 +20,9 @@ before_action :set_blog, only: [:show, :edit, :update, :destroy, :liking_users]
     @blog = Blog.new(blogs_params)
     @blog.user_id = current_user.id
   else
-
     #新規作成ボタンからうつれるように！！
       @blog = Blog.new
       @blog.user_id = current_user.id
-
     end
   end
 
@@ -51,10 +47,10 @@ before_action :set_blog, only: [:show, :edit, :update, :destroy, :liking_users]
   def update
     if @blog.update(blogs_params)
     redirect_to blogs_path, notice: "ブログを更新しました！"
-  else
+   else
     render action:edit
+    end
   end
-end
 
   def destroy
     @blog.destroy

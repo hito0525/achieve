@@ -1,16 +1,14 @@
 class LikesController < ApplicationController
   def like
-    blog = Blog.find(params[:blog_id])
-    like = current_user.likes.build(blog_id: blog.id)
+    @blog = Blog.find(params[:blog_id])
+    like = current_user.likes.build(blog_id: @blog.id)
     like.save
-    redirect_to blog
   end
 
   def unlike
-    blog = Blog.find(params[:blog_id])
-    like = current_user.likes.find_by(blog_id: blog.id )
+    @blog = Blog.find(params[:blog_id])
+    like = current_user.likes.find_by(blog_id: @blog.id )
     like.destroy
-    redirect_to blog
   end
 end
 

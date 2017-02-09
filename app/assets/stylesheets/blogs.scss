@@ -39,3 +39,20 @@ input[type="submit"].btn-block{
   }
 }
 
+/* 投稿一覧 ================================ */
+.blogs {
+  margin: 0;
+  float: left;
+  width: 50%;
+}
+
+.blogs h2 {
+  margin-top: 0;
+}
+.blogs li {
+  background-color: white;
+  display: inline-block;
+  font-size: 15px;
+  width: 25%;
+}
+

@@ -41,7 +41,8 @@ class SubmitRequestsController < ApplicationController
   def update
     respond_to do |format|
       if @submit_request.update(submit_request_params)
-       @submit_request.task.update(charge_id: submit_request_params[:charge_id])
+         @submit_request.update(status: 1)
+         @submit_request.task.update(charge_id: submit_request_params[:charge_id])
        format.html { redirect_to user_submit_requests_path(current_user.id), notice: '依頼を編集しました。'}
        format.json { render :show, status: :ok, location: @submit_request }
      else
@@ -91,7 +92,7 @@ class SubmitRequestsController < ApplicationController
   end
   #シンプルに未承認だけを残せば、他は自分のタスクで確認すればいいのでは？that's why status ought to be just1
   def inbox
-     @submit_requests = SubmitRequest.where(charge_id: current_user.id, status: [1]).order(updated_at: :desc)
+     @submit_requests = SubmitRequest.where(charge_id: current_user.id, status: [1,2]).order(updated_at: :desc)
   end
 
   private

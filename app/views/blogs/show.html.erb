@@ -3,20 +3,19 @@
   <div class="wrapper col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
     <div class="blog-text">
       <p class="left"><strong>タイトル</strong></p>
-      <p class="left"><%= @blog.title %></p>
+      <h2 p class="left"><%= @blog.title %></p></h2>
       <p class="left"><strong>内容</strong></p>
       <p class="left"><%= @blog.content %></p>
-      <div>
-      <% if current_user.likes.find_by(blog_id: @blog.id) %>
-      <%= link_to 'いいね！を取り消す', unlike_path(@blog.id), method: :delete %>
-      <% else %>
-        <%= link_to 'いいね！', like_path(@blog.id), method: :post %>
-      <% end %>
+
+      <div id="like-link">
+        <div id="like-link">
+        <%= render "likes/like_links", blog: @blog %>
+        </div>
       </div>
 
       <div>
         <small>
-          <%= @blog.likes.count %>人がいいね！といっています
+          <%= link_to @blog.likes.count, liking_users_blog_path(@blog.id), id: "like-count"  %>人がいいね！といっています
         </small>
       </div>
 
@@ -24,7 +23,7 @@
         <strong>作成時間:</strong>
         <%= @blog.created_at.strftime("%y/%m/%d %p %l:%M") %>
       </p>
-    </div>
+
 
     <p>コメント一覧</p>
     <div id="comments_area">
@@ -37,3 +36,4 @@
     <%= link_to '戻る', blogs_path %>
   </div>
 </div>
+

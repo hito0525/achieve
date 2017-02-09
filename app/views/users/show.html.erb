@@ -1,18 +1,38 @@
-<h1>ユーザー詳細ページ</h1>
-<h3>フォローしているユーザー</h3>
-  <% @followed_users.each do |user| %>
-          <ul class="usershow">
-            <li><%= profile_img(user) %></li>
-            <!-- <li><%= user.email %></li> -->
-            <li><%= user.name %></li>
-          </ul>
-  <% end %>
+<h2>ユーザー詳細ページ</h2>
 
-<h3>フォローされているユーザー</h3>
-  <% @followers.each do |user| %>
-    <ul class="usershow">
-      <li><%= profile_img(user) %></li>
-      <!-- <li><%= user.email %></li> -->
-      <li><%= user.name %></li>
-    </ul>
-  <% end %>
+<aside class="sidebar">
+  <section>
+    <span class="label">ユーザー</span>
+    <h2 class="user-info"><%= @user.name %></h2>
+  </section>
+
+  <section>
+    <span class="label">プロフィール画像</span>
+    <h3 class="user-info">
+      <%= profile_img(@user) %>
+    </h3>
+  </section>
+
+  <h4>フォローしているユーザー</h4>
+    <% @followed_users.each do |user| %>
+            <ul class="usershow">
+              <li><%= profile_img(user) %></li>
+              <!-- <li><%= user.email %></li> -->
+              <li><%= user.name %></li>
+            </ul>
+    <% end %>
+
+  <h4>フォローされているユーザー</h4>
+    <% @followers.each do |user| %>
+      <ul class="usershow">
+        <li><%= profile_img(user) %></li>
+        <!-- <li><%= user.email %></li> -->
+        <li><%= user.name %></li>
+      </ul>
+    <% end %>
+</aside>
+<h2><%= link_to @user.likes.count, like_blogs_user_path(@user.id) %>個の投稿にいいね！しています。</h2>
+<ul class="blogs">
+  <h2><%= @title %></h2>
+  <%= render @blogs %>
+</ul>

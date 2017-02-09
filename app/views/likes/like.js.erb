@@ -1,0 +1,2 @@
+$('#like-link').html('<%= escape_javascript(render("likes/like_links", blog: @blog)) %>');
+$('#like-count').html('<%= @blog.likes.count %>');

@@ -17,7 +17,6 @@ before_action :set_user, only: [:show, :edit, :update, :like_blogs]
   end
 
   def update
-
   end
 
   def like_blogs
