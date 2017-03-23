@@ -86,6 +86,7 @@ gem 'carrierwave'
 #アップロードした画像ファイルのサイズを変更するため
 gem 'rmagick'
 
+gem 'pusher'
 
 
 

@@ -12,6 +12,7 @@ before_action :set_blog, only: [:show, :edit, :update, :destroy, :liking_users]
   def show
     @comment = @blog.comments.build
     @comments = @blog.comments
+    Notification.find(params[:notification_id]).update(read: true) if params[:notification_id]
   end
 
 
