@@ -64,7 +64,7 @@ before_action :set_blog, only: [:show, :edit, :update, :destroy, :liking_users]
     render :new if @blog.invalid?
   end
 
-  def liking_user
+  def liking_users
     @users = @blog.liking_users
   end
 
